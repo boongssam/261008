@@ -1,0 +1,32 @@
+# Firebase App Hosting 설정
+# https://firebase.google.com/docs/app-hosting/configure
+
+runConfig:
+  minInstances: 0
+  maxInstances: 2
+  concurrency: 20
+  cpu: 1
+  memoryMiB: 1024
+
+env:
+  # Gemini API 키는 Cloud Secret Manager에 저장하고 런타임(서버)에만 노출합니다.
+  # 등록: firebase apphosting:secrets:set gemini-api-key
+  - variable: GEMINI_API_KEY
+    secret: gemini-api-key
+    availability:
+      - RUNTIME
+
+  # 사용할 Gemini 모델 (필요하면 변경)
+  - variable: GEMINI_MODEL
+    value: gemini-3.5-flash
+    availability:
+      - RUNTIME
+
+  # 로그인 허용 교사 이메일(쉼표 구분). 비워 두면 로그인한 모든 사용자를 허용합니다.
+  - variable: ALLOWED_TEACHER_EMAILS
+    value: ""
+    availability:
+      - RUNTIME
+
+  # 웹 앱 설정(NEXT_PUBLIC_FIREBASE_*)과 Admin SDK 설정은 App Hosting이
+  # FIREBASE_WEBAPP_CONFIG / FIREBASE_CONFIG로 자동 주입하므로 따로 적지 않아도 됩니다.
