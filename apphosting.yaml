@@ -22,11 +22,12 @@ env:
     availability:
       - RUNTIME
 
-  # 로그인 허용 교사 이메일(쉼표 구분). 비워 두면 로그인한 모든 사용자를 허용합니다.
-  - variable: ALLOWED_TEACHER_EMAILS
-    value: ""
-    availability:
-      - RUNTIME
+  # 로그인 허용 교사 이메일(쉼표 구분). 이 항목이 없으면 로그인한 모든 사용자를 허용합니다.
+  # 사용하려면 아래 주석을 풀고 이메일을 입력하세요. (value는 빈 문자열이면 안 됩니다)
+  # - variable: ALLOWED_TEACHER_EMAILS
+  #   value: teacher1@example.com,teacher2@example.com
+  #   availability:
+  #     - RUNTIME
 
   # 웹 앱 설정(NEXT_PUBLIC_FIREBASE_*)과 Admin SDK 설정은 App Hosting이
   # FIREBASE_WEBAPP_CONFIG / FIREBASE_CONFIG로 자동 주입하므로 따로 적지 않아도 됩니다.
